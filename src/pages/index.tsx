@@ -79,7 +79,7 @@ export default function Home({ postsPagination }: HomeProps) {
                 <p>{result.data.subtitle}</p>
               </a>
             </Link>
-            <div className={styles.author}>
+            <div className={commonStyles.author}>
               <FiCalendar />
               <time>
                 {format(
@@ -140,5 +140,6 @@ export const getStaticProps: GetStaticProps = async () => {
         next_page: postsResponse.next_page,
       },
     },
+    revalidate: 60 * 60 * 24, // 24 hours
   };
 };

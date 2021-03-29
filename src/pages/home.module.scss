@@ -4,6 +4,12 @@
     text-decoration: none;
   }
 
+  transition: filter 0.2s;
+
+  &:hover{
+    filter: brightness(0.8);
+  }
+
   strong{
    font-weight: 700;
    font-size: 1.8rem;
@@ -27,32 +33,6 @@
     line-height: 1.4rem;
     color: var(--body);
   }
-
-  .author{
-
-    display: flex;
-    align-items: center;
-
-    svg{
-      color: #bbb;
-      margin-right: 0.4rem;
-      width: 1rem;
-    }
-
-    time{
-      font-size: 0.8rem;
-      color: var(--info);
-      margin-right: 1.6rem;
-      line-height: 1.1rem;
-    }
-
-    span{
-      font-size: 0.8rem;
-      color: var(--info);
-      line-height: 1.1rem;
-    }
-  }
-
 
 }
 

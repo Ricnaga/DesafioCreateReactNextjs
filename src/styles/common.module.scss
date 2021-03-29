@@ -3,3 +3,29 @@
   width: 60%;
   margin: 0 auto;
 }
+
+.author{
+
+  display: flex;
+  align-items: center;
+
+  svg{
+    color: #bbb;
+    margin-right: 0.4rem;
+    width: 1rem;
+  }
+
+  time{
+    font-size: 0.8rem;
+    color: var(--info);
+    margin-right: 1.6rem;
+    line-height: 1.1rem;
+  }
+
+  span{
+    font-size: 0.8rem;
+    color: var(--info);
+    line-height: 1.1rem;
+    margin-right: 1.6rem;
+  }
+}
