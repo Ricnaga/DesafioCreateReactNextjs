@@ -1,4 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import { FiCalendar, FiClock, FiUser } from 'react-icons/fi';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+import Header from '../../components/Header';
 
 import { getPrismicClient } from '../../services/prismic';
 
@@ -26,20 +31,72 @@ interface PostProps {
   post: Post;
 }
 
-// export default function Post() {
-//   // TODO
-// }
+export default function Post({ post }: PostProps) {
+  // TODO
 
-// export const getStaticPaths = async () => {
-//   const prismic = getPrismicClient();
-//   const posts = await prismic.query(TODO);
+  return (
+    <>
+      <Head>
+        <title>Desafio criando projeto do zero - posts</title>
+      </Head>
+      <Header />
 
-//   // TODO
-// };
+      <div className={styles.banner}>
+        <img src={post.data.banner.url} alt="banner" />
+      </div>
 
-// export const getStaticProps = async context => {
-//   const prismic = getPrismicClient();
-//   const response = await prismic.getByUID(TODO);
+      <main className={commonStyles.container}>
+        <div className={styles.title}>
+          <h1>{post.data.title}</h1>
 
-//   // TODO
-// };
+          <div className={commonStyles.author}>
+            <FiCalendar />
+            <time>
+              {format(new Date(post.first_publication_date), 'dd MMM yyyy', {
+                locale: ptBR,
+              })}
+            </time>
+            <FiUser /> <span>{post.data.author}</span>
+            <FiClock /> <span>calcular minutos</span>
+          </div>
+        </div>
+
+        {post.data.content.map(title => (
+          <div key={title.heading} className={styles.content}>
+            <h2>{title.heading}</h2>
+
+            {title.body.map(content => (
+              <p>{content.text}</p>
+            ))}
+          </div>
+        ))}
+      </main>
+    </>
+  );
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  //   const prismic = getPrismicClient();
+  //   const posts = await prismic.query(TODO); //pegar uuid
+  //   // TODO
+  return {
+    paths: [
+      //  { params: { slug: '' } }
+    ],
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps: GetStaticProps = async context => {
+  const { slug } = context.params;
+
+  const prismic = getPrismicClient();
+  const response = await prismic.getByUID('posts', String(slug), {});
+
+  //   // TODO
+  return {
+    props: {
+      post: response,
+    },
+  };
+};
