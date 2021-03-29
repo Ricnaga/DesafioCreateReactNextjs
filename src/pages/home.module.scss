@@ -1,5 +1,9 @@
 // TODO
 .post{
+  a{
+    text-decoration: none;
+  }
+
   strong{
    font-weight: 700;
    font-size: 1.8rem;
@@ -53,12 +57,23 @@
 }
 
 .moreContent{
-  display: block;
-
   margin: 2.6rem auto;
 
   color: var(--highlight);
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.4rem;
+
+  background: var(--background);
+
+  border: none;
+
+  transition: color 0.2s, font-size 0.1s;
+
+  cursor: pointer;
+
+  &:hover{
+    color:#e93896;
+    font-size: 1.06rem;
+  }
 }
