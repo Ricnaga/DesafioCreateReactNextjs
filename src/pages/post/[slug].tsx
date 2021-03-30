@@ -1,8 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+import Prismic from '@prismicio/client';
 import { FiCalendar, FiClock, FiUser } from 'react-icons/fi';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { useRouter } from 'next/router';
+import { RichText } from 'prismic-dom';
 import Header from '../../components/Header';
 
 import { getPrismicClient } from '../../services/prismic';
@@ -33,6 +36,11 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   // TODO
+  const router = useRouter();
+
+  const getText = post.data.content.map(p =>
+    RichText.asText(p.body).split(' ')
+  );
 
   return (
     <>
@@ -40,6 +48,8 @@ export default function Post({ post }: PostProps) {
         <title>Desafio criando projeto do zero - posts</title>
       </Head>
       <Header />
+
+      {router.isFallback && <h1 className={styles.isLoading}>Carregando...</h1>}
 
       <div className={styles.banner}>
         <img src={post.data.banner.url} alt="banner" />
@@ -57,7 +67,7 @@ export default function Post({ post }: PostProps) {
               })}
             </time>
             <FiUser /> <span>{post.data.author}</span>
-            <FiClock /> <span>calcular minutos</span>
+            <FiClock /> <span>MINUTOS</span>
           </div>
         </div>
 
@@ -66,7 +76,7 @@ export default function Post({ post }: PostProps) {
             <h2>{title.heading}</h2>
 
             {title.body.map(content => (
-              <p>{content.text}</p>
+              <p key={content.text}>{content.text}</p>
             ))}
           </div>
         ))}
@@ -76,13 +86,25 @@ export default function Post({ post }: PostProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  //   const prismic = getPrismicClient();
-  //   const posts = await prismic.query(TODO); //pegar uuid
+  const prismic = getPrismicClient();
+  const posts = await prismic.query(
+    [Prismic.predicates.at('document.type', 'posts')],
+    {
+      fetch: ['posts.data'],
+      pageSize: 2,
+    }
+  );
+
   //   // TODO
   return {
-    paths: [
-      //  { params: { slug: '' } }
-    ],
+    paths: posts.results.map(post => {
+      return {
+        params: {
+          slug: post.uid,
+        },
+      };
+    }),
+
     fallback: 'blocking',
   };
 };
@@ -94,9 +116,11 @@ export const getStaticProps: GetStaticProps = async context => {
   const response = await prismic.getByUID('posts', String(slug), {});
 
   //   // TODO
+
   return {
     props: {
       post: response,
     },
+    revalidate: 60 * 30, // 30 minutes
   };
 };
