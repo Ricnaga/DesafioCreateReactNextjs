@@ -38,9 +38,27 @@ export default function Post({ post }: PostProps) {
   // TODO
   const router = useRouter();
 
-  const getText = post.data.content.map(p =>
-    RichText.asText(p.body).split(' ')
+  const titleText = post.data.title.split(' ').length;
+
+  const headingText = post.data.content
+    .map(p => p.heading.split(' ').length)
+    .reduce((sum, sumHeading) => {
+      sum += sumHeading;
+      return sum;
+    }, 0);
+
+  const bodyText = post.data.content
+    .map(p => RichText.asText(p.body).split(' '))
+    .reduce((sumWords, text) => {
+      sumWords += text.length;
+      return sumWords;
+    }, 0);
+
+  const readingTime = Math.round(
+    (titleText + headingText + bodyText) / 200 + 1
   );
+
+  console.log(readingTime);
 
   return (
     <>
@@ -67,7 +85,7 @@ export default function Post({ post }: PostProps) {
               })}
             </time>
             <FiUser /> <span>{post.data.author}</span>
-            <FiClock /> <span>MINUTOS</span>
+            <FiClock /> <span>{readingTime} min</span>
           </div>
         </div>
 
