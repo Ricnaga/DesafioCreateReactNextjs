@@ -58,8 +58,6 @@ export default function Post({ post }: PostProps) {
     (titleText + headingText + bodyText) / 200 + 1
   );
 
-  console.log(readingTime);
-
   return (
     <>
       <Head>
