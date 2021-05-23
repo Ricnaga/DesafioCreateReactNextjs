@@ -1,18 +1,17 @@
+<img src="cover.jpg" alt="capa"/>
+
 # <div align="center"> Desafio Nextjs </div>
 
 #### <div align="right">- Projeto Finalizado <div>
 
 ### <div align="center"> Conteúdo de curso criado pela equipe Rocketseat abordando conceitos sobre: </div>
 
-#### 1. ReactJS
-#### 2. NextJS
-#### 3. Utilização de props
-#### 4. Utilização de children
-#### 5. Utilização de components
-#### 6. Páginas dinâmicas
-#### 7. Chamadas a API
-#### 8. Utilização do prismic CMS
-#### 9. Utilização de hooks(API de contexto)
+- ReactJS: Hooks e components
+- ReactJS: API context
+- NextJS: Hooks e components
+- NextJS: Páginas dinâmicas
+- Chamadas a API
+- Utilização do prismic CMS
 
 ## <div align="center"> Sumário </div>
 <!--ts-->
@@ -25,10 +24,10 @@ Para executar a aplicação é necessário instalar algumas ferramentas tais com
 
 ```bash
 # Baixe o repositório.
-$ git clone https://github.com/Ricnaga/DesafioCreateReactNextjs.git
+$ git clone https://github.com/Ricnaga/create-react-nextjs.git
 
 # Acesse a pasta do projeto.
-$ cd DesafioCreateReactNextjs
+$ cd create-react-nextjs
 
 # Agora que baixou e acessou o repositório, vamos começar a instalação das dependências.
 $ yarn ( caso não utilize o yarn execute apenas npm -i)
@@ -62,4 +61,4 @@ Gostou? tem alguma sugestão de melhoria? por favor, entre em contato e ja aprov
 </div>
 
 #
-<div align="center"> <img src="https://img.shields.io/github/license/Ricnaga/DesafioCreateReactNextjs?color=purple&style=for-the-badge"/> </div>
+<div align="center"> <img src="https://img.shields.io/github/license/Ricnaga/create-react-nextjs?color=purple&style=for-the-badge"/> </div>
