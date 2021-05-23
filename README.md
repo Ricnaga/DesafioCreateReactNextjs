@@ -1,3 +1,7 @@
+<img src="https://img.shields.io/github/license/Ricnaga/create-react-nextjs?style=flat-square"/>
+
+#
+
 <img src="cover.jpg" alt="capa"/>
 
 # <div align="center"> Desafio Nextjs </div>
@@ -60,5 +64,4 @@ Gostou? tem alguma sugestão de melhoria? por favor, entre em contato e ja aprov
 <a href="https://app.rocketseat.com.br/me/ricardo-nagatomy-08130"><img src="https://img.shields.io/badge/-Rocketseat-000?style=flat-square&logo=&logoColor=white"></a>
 </div>
 
-#
-<div align="center"> <img src="https://img.shields.io/github/license/Ricnaga/create-react-nextjs?color=purple&style=for-the-badge"/> </div>
+
